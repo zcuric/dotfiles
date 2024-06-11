@@ -1,0 +1,12 @@
+[user]
+	name = Zdravko Curic
+	email = zcuric@gmail.com
+	username = zcuric
+[push]
+	autoSetupRemote = true
+[alias]
+	bb = "!sh ~/better-git-branch.sh"
+[pull]
+	rebase = true
+[rerere]
+	enabled = true

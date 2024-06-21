@@ -101,8 +101,8 @@ eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(fnm env --use-on-cd)"
 
-[ -s "/Users/zdravko/.scm_breeze/scm_breeze.sh" ] && source "/Users/zdravko/.scm_breeze/scm_breeze.sh"
-[ -s "/Users/zdravko/.bun/_bun" ] && source "/Users/zdravko/.bun/_bun"
+[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"

@@ -84,6 +84,7 @@ alias gcom='
   fi
 '
 alias gti="git"
+alias gfm="git commit --amend -m"
 alias dc="docker-compose"
 alias dcup="docker-compose up"
 alias dcud="docker-compose up -d"
@@ -105,5 +106,9 @@ eval "$(fnm env --use-on-cd)"
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+export LOCAL="$HOME/.local"
+export PATH="$BUN_INSTALL/bin:$LOCAL/bin:$PATH"
 export RUN_PRE_COMMIT_HOOK=true
+
+
+. "$HOME/.cargo/env"

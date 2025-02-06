@@ -1,1 +1,5 @@
-window-padding-x = 2
+font-size = 14
+theme = catppuccin-mocha
+gtk-titlebar= false
+window-decoration = true
+window-padding-balance = true

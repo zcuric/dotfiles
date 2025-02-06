@@ -85,6 +85,7 @@ alias gcom='
 '
 alias gti="git"
 alias gfm="git commit --amend -m"
+alias gundo="git reset --soft HEAD~1"
 alias dc="docker-compose"
 alias dcup="docker-compose up"
 alias dcud="docker-compose up -d"
@@ -112,3 +113,6 @@ export RUN_PRE_COMMIT_HOOK=true
 
 
 . "$HOME/.cargo/env"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/zdravko/.lmstudio/bin"

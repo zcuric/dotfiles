@@ -116,3 +116,6 @@ export RUN_PRE_COMMIT_HOOK=true
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/zdravko/.lmstudio/bin"
+
+# bun completions
+[ -s "/Users/zdravko/.bun/_bun" ] && source "/Users/zdravko/.bun/_bun"

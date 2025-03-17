@@ -10,3 +10,5 @@
 	rebase = true
 [rerere]
 	enabled = true
+[core]
+	excludesfile = /Users/zdravko/.gitignore

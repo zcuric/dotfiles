@@ -108,8 +108,9 @@ eval "$(fnm env --use-on-cd)"
 
 export BUN_INSTALL="$HOME/.bun"
 export LOCAL="$HOME/.local"
-export PATH="$BUN_INSTALL/bin:$LOCAL/bin:$PATH"
+export PATH="$BUN_INSTALL/bin:$LOCAL/bin:$PATH::$HOME/.composer/vendor/bin"
 export RUN_PRE_COMMIT_HOOK=true
+export CLOUDSDK_PYTHON="/usr/bin/python3"
 
 
 . "$HOME/.cargo/env"
@@ -119,3 +120,20 @@ export PATH="$PATH:/Users/zdravko/.lmstudio/bin"
 
 # bun completions
 [ -s "/Users/zdravko/.bun/_bun" ] && source "/Users/zdravko/.bun/_bun"
+
+ytd() {
+  clean_url="${1%%\?*}"
+  output_dir="$HOME/Documents/Videos/downloaded"
+
+  mkdir -p "$output_dir"
+
+  uvx yt-dlp \
+    -f "bv*[vcodec^=avc1]+ba[acodec^=mp4a]/b[ext=mp4]" \
+    --merge-output-format mp4 \
+    -o "$output_dir/%(title)s.%(ext)s" \
+    "$clean_url"
+}
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+

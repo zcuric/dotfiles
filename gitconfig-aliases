@@ -1,0 +1,245 @@
+# SCM Breeze Git Aliases for .gitconfig
+# Add this to your ~/.gitconfig file under the [alias] section
+# Or run: git config --global --add include.path "~/.gitconfig-scm-breeze-aliases"
+
+[alias]
+    # ============================================
+    # BASIC COMMANDS
+    # ============================================
+    
+    # Status
+    st = status
+    ss = status -s
+    
+    # Add
+    aa = add -A
+    ap = add -p
+    au = add -u
+    
+    # Commit
+    c = commit
+    cv = commit --verbose
+    cm = commit --amend
+    cmh = commit --amend -C HEAD
+    ch = commit -C HEAD
+    
+    # Checkout
+    co = checkout
+    cob = checkout -b
+    
+    # Branch
+    b = branch
+    ba = branch -a
+    bd = branch -d
+    bD = branch -D
+    bm = branch -m
+    
+    # Diff
+    d = diff
+    dc = diff --cached
+    dw = diff --word-diff
+    dt = difftool
+    
+    # Log - pretty formatted
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    la = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+    lg = log --graph --max-count=5
+    ls = log --stat --max-count=5
+    lo = log --oneline
+    lp = log -p
+    
+    # ============================================
+    # REMOTE OPERATIONS
+    # ============================================
+    
+    # Fetch
+    f = fetch
+    fa = fetch --all
+    
+    # Pull
+    pl = pull
+    plr = pull --rebase
+    
+    # Push
+    ps = push
+    psf = push -f
+    psu = push -u origin HEAD
+    
+    # Remote
+    r = remote -v
+    ra = remote add
+    rr = remote remove
+    rs = remote set-url
+    
+    # Clone
+    cl = clone
+    
+    # ============================================
+    # MERGE & REBASE
+    # ============================================
+    
+    # Merge
+    m = merge
+    mff = merge --ff
+    mnff = merge --no-ff
+    ma = merge --abort
+    
+    # Rebase
+    rb = rebase
+    rbi = rebase -i
+    rbc = rebase --continue
+    rba = rebase --abort
+    rbs = rebase --skip
+    
+    # Cherry-pick
+    cp = cherry-pick
+    cpa = cherry-pick --abort
+    cpc = cherry-pick --continue
+    
+    # ============================================
+    # STASH
+    # ============================================
+    ash = stash
+    asha = stash apply
+    ashl = stash list
+    ashp = stash pop
+    ashd = stash drop
+    ashs = stash show -p
+    ashb = stash branch
+    
+    # ============================================
+    # RESET & CLEAN
+    # ============================================
+    
+    # Reset
+    rs = reset
+    rsh = reset --hard
+    rss = reset --soft
+    rsl = reset HEAD~
+    
+    # Clean
+    ce = clean
+    cef = clean -fd
+    cefd = clean -fdx
+    
+    # ============================================
+    # SHOW & INSPECT
+    # ============================================
+    sh = show
+    sm = show --summary
+    sf = show --stat
+    
+    # Blame
+    bl = blame
+    
+    # Tag
+    t = tag
+    ta = tag -a
+    td = tag -d
+    
+    # ============================================
+    # COMBINED/POWER COMMANDS
+    # ============================================
+    
+    # Fetch and rebase
+    fr = !git fetch && git rebase
+    
+    # Pull and push
+    pls = !git pull && git push
+    
+    # Add all and commit
+    ac = !git add -A && git commit
+    
+    # Add all and commit with message
+    acm = "!f() { git add -A && git commit -m \"$1\"; }; f"
+    
+    # Amend without editing message
+    amend = commit --amend --no-edit
+    
+    # Force amend and push (DANGEROUS - use carefully!)
+    gforce = !git add -A && git commit --amend -C HEAD && git push -f
+    
+    # Undo last commit (keep changes staged)
+    undo = reset --soft HEAD~1
+    
+    # Unstage all files
+    unstage = reset HEAD --
+    
+    # Discard all local changes
+    discard = checkout -- .
+    
+    # ============================================
+    # INFORMATIONAL
+    # ============================================
+    
+    # List aliases
+    aliases = config --get-regexp alias
+    
+    # Show current branch
+    current = rev-parse --abbrev-ref HEAD
+    
+    # List branches sorted by last modified
+    recent = for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'
+    
+    # Show files changed in last commit
+    last = diff-tree --no-commit-id --name-only -r HEAD
+    
+    # Count commits by author
+    count = shortlog -sn
+    
+    # Find branches containing commit
+    fb = "!f() { git branch -a --contains $1; }; f"
+    
+    # Find commits by message
+    fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+    
+    # ============================================
+    # WORKFLOW HELPERS
+    # ============================================
+    
+    # Start new feature branch
+    feature = "!f() { git checkout -b feature/$1; }; f"
+    
+    # Start new bugfix branch
+    bugfix = "!f() { git checkout -b bugfix/$1; }; f"
+    
+    # Start new hotfix branch
+    hotfix = "!f() { git checkout -b hotfix/$1; }; f"
+    
+    # Sync fork with upstream
+    sync = !git fetch upstream && git checkout main && git merge upstream/main
+    
+    # Interactive rebase on last n commits
+    rib = "!f() { git rebase -i HEAD~$1; }; f"
+    
+    # Squash last n commits
+    squash = "!f() { git reset --soft HEAD~$1 && git commit; }; f"
+    
+    # Show commit tree
+    tree = log --graph --oneline --all --decorate
+    
+    # ============================================
+    # DIFF & PATCH
+    # ============================================
+    
+    # Diff with names only
+    dn = diff --name-only
+    
+    # Diff with stat
+    ds = diff --stat
+    
+    # Create patch from last commit
+    patch = format-patch -1 HEAD
+    
+    # Apply patch
+    ap = apply
+    
+    # ============================================
+    # SUBMODULES
+    # ============================================
+    
+    # Update submodules
+    sub = submodule update --init --recursive
+    
+    # Pull with submodules
+    plsub = !git pull && git submodule update --init --recursive

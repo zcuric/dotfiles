@@ -39,11 +39,6 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
-# scm_breeze {{{
-SCM_BREEZE_DISABLE_ASSETS_MANAGEMENT="true"
-zinit ice atclone"$ZINIT[PLUGINS_DIR]/scmbreeze---scm_breeze/install.sh" atpull"%atclone" pick"scm_breeze.sh"; zinit light scmbreeze/scm_breeze
-# }}}
-
 # Load completions
 autoload -U compinit && compinit
 
@@ -94,46 +89,53 @@ alias zconfig="code ~/.zshrc "
 alias zsource="source ~/.zshrc "
 alias npmclean="rm -rf node_modules && rm package-lock.json && npm install"
 alias yarnclean="rm -rf node_modules && rm package-lock.json && yarn install"
-
 # Laravel Sail
 alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 
 # Shell integrations
 eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
+if [ -z "$DISABLE_ZOXIDE" ]; then
+    eval "$(zoxide init --cmd cd zsh)"
+fi
 eval "$(fnm env --use-on-cd)"
 
-[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 export BUN_INSTALL="$HOME/.bun"
 export LOCAL="$HOME/.local"
 export PATH="$BUN_INSTALL/bin:$LOCAL/bin:$PATH::$HOME/.composer/vendor/bin"
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
 export RUN_PRE_COMMIT_HOOK=true
 export CLOUDSDK_PYTHON="/usr/bin/python3"
-
 
 . "$HOME/.cargo/env"
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/zdravko/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 
 # bun completions
-[ -s "/Users/zdravko/.bun/_bun" ] && source "/Users/zdravko/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 ytd() {
-  clean_url="${1%%\?*}"
-  output_dir="$HOME/Documents/Videos/downloaded"
+  if [ -z "$1" ]; then
+    echo "Usage: ytd <youtube-url>"
+    return 1
+  fi
 
+  output_dir="$HOME/Documents/Videos/downloaded"
   mkdir -p "$output_dir"
 
+  # yt-dlp handles all YouTube URL formats and query params natively
   uvx yt-dlp \
     -f "bv*[vcodec^=avc1]+ba[acodec^=mp4a]/b[ext=mp4]" \
     --merge-output-format mp4 \
     -o "$output_dir/%(title)s.%(ext)s" \
-    "$clean_url"
+    "$1"
 }
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
+source ~/git-aliases.sh
+# Add to ~/.zshrc
+if [ -f .env.local ]; then
+    source .env.local
+fi

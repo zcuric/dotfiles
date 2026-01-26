@@ -13,3 +13,24 @@
 [core]
 	excludesfile = /Users/zdravko/.gitignore
 	autocrlf = input
+[color]
+    ui = auto
+    branch = auto
+    diff = auto
+    status = auto
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = magenta
+    branch = cyan bold
+    header = normal
+[color "diff"]
+    meta = yellow bold
+    frag = cyan
+    old = red
+    new = green
+    context = normal
+[color "branch"]
+    current = cyan bold
+    local = green
+    remote = red

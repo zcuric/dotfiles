@@ -6,3 +6,21 @@ disabled = true
 
 [docker_context]
 disabled = true
+
+[git_branch]
+symbol = "🌱 "
+style = "bold cyan"
+truncation_length = 20
+
+[git_status]
+ahead = "⇡${count}"
+behind = "⇣${count}"
+conflicted = "🏳"
+deleted = "✘"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+modified = "!"
+renamed = "»"
+staged = "[+](green)"
+stashed = "$"
+untracked = "?"
+style = "bold red"

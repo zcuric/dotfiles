@@ -42,9 +42,9 @@ zinit light Aloxaf/fzf-tab
 # Load completions
 autoload -U compinit && compinit
 
-# Keybindings
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
+# Arrow keys search history based on what's typed
+bindkey '^[[A' history-beginning-search-backward
+bindkey '^[[B' history-beginning-search-forward
 
 # History
 HISTSIZE=5000

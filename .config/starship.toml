@@ -13,8 +13,8 @@ style = "bold cyan"
 truncation_length = 20
 
 [git_status]
-ahead = "⇡${count}"
-behind = "⇣${count}"
+ahead = "⇡ ${count}"
+behind = "⇣ ${count}"
 conflicted = "🏳"
 deleted = "✘"
 diverged = "⇕⇡${ahead_count}⇣${behind_count}"

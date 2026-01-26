@@ -1,6 +1,7 @@
 # configure git to use globla ~/.gitignore file.
 # git config --global core.excludesfile ~/.gitignore
 .env
+.env.local
 .DS_Store
 .vscode
 Thumbs.db

@@ -21,6 +21,6 @@ diverged = "⇕⇡${ahead_count}⇣${behind_count}"
 modified = "!"
 renamed = "»"
 staged = "[+](green)"
-stashed = "$"
+stashed = "📦"  # Use a symbol instead of $
 untracked = "?"
 style = "bold red"

@@ -12,4 +12,4 @@
 	enabled = true
 [core]
 	excludesfile = /Users/zdravko/.gitignore
-	autocrlf = true
+	autocrlf = input

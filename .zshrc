@@ -118,21 +118,18 @@ export PATH="$PATH:$HOME/.lmstudio/bin"
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 ytd() {
-  if [ -z "$1" ]; then
-    echo "Usage: ytd <youtube-url>"
-    return 1
-  fi
-
+  clean_url="${1%%\?*}"
   output_dir="$HOME/Documents/Videos/downloaded"
+
   mkdir -p "$output_dir"
 
-  # yt-dlp handles all YouTube URL formats and query params natively
   uvx yt-dlp \
     -f "bv*[vcodec^=avc1]+ba[acodec^=mp4a]/b[ext=mp4]" \
     --merge-output-format mp4 \
     -o "$output_dir/%(title)s.%(ext)s" \
-    "$1"
+    "$clean_url"
 }
+
 
 source ~/git-aliases.sh
 # Add to ~/.zshrc

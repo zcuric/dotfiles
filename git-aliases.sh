@@ -32,10 +32,12 @@ alias gcmsg='git commit -m'
 # ============================================
 # CHECKOUT
 # ============================================
-alias gco='git checkout'
+unalias gco 2>/dev/null
+function gco { git checkout "$@" 2>/dev/null || git checkout -b "$@"; }
 alias gcob='git checkout -b'
 alias gcb='git checkout -b'
-alias gcom='git checkout main'
+unalias gcom 2>/dev/null
+function gcom { git checkout main 2>/dev/null || git checkout master; }
 alias gcoM='git checkout master'
 
 # ============================================
@@ -209,6 +211,16 @@ alias galiases='git config --get-regexp alias'
 # ============================================
 # WORKFLOW HELPERS
 # ============================================
+unalias gclean 2>/dev/null
+function gclean {
+  git branch --merged | grep -vE '^\*|main|master|develop' | xargs git branch -d 2>/dev/null
+  local cutoff=$(date -v-2w +%s)
+  git for-each-ref --format='%(refname:short) %(committerdate:unix)' refs/heads/ | while read branch date; do
+    [[ "$branch" =~ ^(main|master|develop)$ ]] && continue
+    [[ "$branch" == "$(git rev-parse --abbrev-ref HEAD)" ]] && continue
+    [[ "$date" -lt "$cutoff" ]] && git branch -D "$branch"
+  done
+}
 alias gfeature='git checkout -b feature/'
 alias gbugfix='git checkout -b bugfix/'
 alias ghotfix='git checkout -b hotfix/'

@@ -1,0 +1,5 @@
+- For any file search or grep in the current git indexed directory use fff tools
+- Use `fd` instead of `find` for file search
+- Use `trash` instead of `rm` for deletions
+- Use `tree` for directory visualization
+- Ask before force pushing to Github

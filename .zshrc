@@ -91,7 +91,7 @@ alias npmclean="rm -rf node_modules && rm package-lock.json && npm install"
 alias yarnclean="rm -rf node_modules && rm package-lock.json && yarn install"
 # Laravel Sail
 alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
-
+alias cc='claude --dangerously-skip-permissions'
 # Shell integrations
 eval "$(fzf --zsh)"
 if [ -z "$DISABLE_ZOXIDE" ]; then
@@ -124,7 +124,7 @@ ytd() {
   mkdir -p "$output_dir"
 
   uvx yt-dlp \
-    -f "bv*[vcodec^=avc1]+ba[acodec^=mp4a]/b[ext=mp4]" \
+    -f "bv*[ext=mp4]+ba[ext=m4a]/bv*+ba/best" \
     --merge-output-format mp4 \
     -o "$output_dir/%(title)s.%(ext)s" \
     "$clean_url"
@@ -136,3 +136,8 @@ source ~/git-aliases.sh
 if [ -f .env.local ]; then
     source .env.local
 fi
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/zdravko/.lmstudio/bin"
+# End of LM Studio CLI section
+

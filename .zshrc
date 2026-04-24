@@ -141,3 +141,10 @@ fi
 export PATH="$PATH:/Users/zdravko/.lmstudio/bin"
 # End of LM Studio CLI section
 
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+export PATH="$JAVA_HOME/bin:$PATH"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"

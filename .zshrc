@@ -148,3 +148,6 @@ export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
 
 # Vite+ bin (https://viteplus.dev)
 . "$HOME/.vite-plus/env"
+
+# Claude Code: company account (separate creds/history in ~/.claude-work)
+alias claude-work='CLAUDE_CONFIG_DIR="$HOME/.claude-work" claude'

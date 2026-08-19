@@ -3,3 +3,4 @@
 - Use `trash` instead of `rm` for deletions
 - Use `tree` for directory visualization
 - Ask before force pushing to Github
+- Never attribute yourself in work you produce: no `Co-Authored-By: Claude` trailers on commits, no "Generated with Claude Code" footers in PR bodies or release notes, and no mention of Claude or Anthropic in code, comments, or docs.

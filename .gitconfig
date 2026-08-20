@@ -11,7 +11,7 @@
 [rerere]
 	enabled = true
 [core]
-	excludesfile = /Users/zdravko/.gitignore
+	excludesfile = ~/.gitignore
 	autocrlf = input
 [color]
     ui = auto
